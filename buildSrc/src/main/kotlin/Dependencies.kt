@@ -12,6 +12,9 @@ object Versions {
     const val hiltNavigationCompose = "1.2.0"
     const val retrofit = "2.11.0"
     const val okhttp = "4.12.0"
+    const val mockitoCore = "5.10.0"
+    const val mockitoKotlin = "4.0.0"
+    const val kotlinCoroutineTest = "1.6.0"
     // Add more versions here
 }
 
@@ -90,6 +93,13 @@ object TestingLibs {
     const val composeUiTestJunit4 = "androidx.compose.ui:ui-test-junit4"
     const val composeUiTooling = "androidx.compose.ui:ui-tooling"
     const val composeUiTestManifest = "androidx.compose.ui:ui-test-manifest"
+/*
+testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0")
+    testImplementation("org.mockito:mockito-core:5.10.0")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0")*/
+    const val mockitoCore = "org.mockito:mockito-core:${Versions.mockitoCore}"
+    const val mockitoKotlin = "org.mockito.kotlin:mockito-kotlin:${Versions.mockitoKotlin}"
+    const val kotlinCoroutineTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.kotlinCoroutineTest}"
 }
 
 object HiltAndroid {

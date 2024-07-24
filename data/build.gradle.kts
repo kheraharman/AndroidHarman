@@ -58,7 +58,10 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")*/
-    testImplementation("junit:junit:4.13.2")
+    testImplementation(TestingLibs.junit)
+    testImplementation(TestingLibs.kotlinCoroutineTest)
+    testImplementation(TestingLibs.mockitoCore)
+    testImplementation(TestingLibs.mockitoKotlin)
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
 }
