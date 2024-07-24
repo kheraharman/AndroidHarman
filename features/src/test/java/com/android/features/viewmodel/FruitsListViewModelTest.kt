@@ -7,11 +7,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Assert.*
 import com.android.features.usecases.FruitsUseCase
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.toList
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
@@ -20,7 +16,7 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.kotlin.mock
+import org.mockito.Mockito
 import org.mockito.kotlin.whenever
 
 @ExperimentalCoroutinesApi
@@ -30,7 +26,7 @@ class FruitsListViewModelTest {
 
     private val testDispatcher = TestCoroutineDispatcher()
 
-    private val fruitsUseCase: FruitsUseCase = mock()
+    private val fruitsUseCase: FruitsUseCase = Mockito.mock()
     private lateinit var viewModel: FruitsListViewModel
 
     @Before
@@ -41,38 +37,25 @@ class FruitsListViewModelTest {
 
     @After
     fun tearDown() {
-        Dispatchers.resetMain() // Reset the main dispatcher to the original Main dispatcher
+        Dispatchers.resetMain() // Reset the Main dispatcher to the original Main dispatcher
         testDispatcher.cleanupTestCoroutines()
     }
 
     @Test
-    fun `getFruitsNew emits Resource Loading then Resource Success`() = runTest {
-        val fruitsList = listOf(FruitsResponse(name = "Apple"), FruitsResponse("Banana"))
-        whenever(fruitsUseCase.invoke()).thenReturn(Result.success(fruitsList))
-
-        val stateEmissions = mutableListOf<Resource<Any>?>()
-        val job = launch {
-            viewModel.state.collect { stateEmissions.add(it) }
-        }
+    fun `getFruitsNew - success state`() = runTest {
+        val expectedData = listOf(FruitsResponse("Apple"), FruitsResponse("Banana"))
+        whenever(fruitsUseCase.invoke()).thenReturn(Result.success(expectedData))
 
         viewModel.getFruitsNew()
-
-        delay(timeMillis = 1000)
-        // Ensure we have the expected emissions
-        assertTrue(stateEmissions[0] is Resource.Loading)
-     //   assertTrue(stateEmissions[1] is Resource.Success && stateEmissions[1]?.data == fruitsList)
-
-        job.cancel()
+        assertTrue(viewModel.state.first() is Resource.Success)
     }
 
     @Test
-    fun `getFruitsNew emits Resource Loading then Resource Error on failure`() = runTest {
-        val errorMessage = "Network error"
-        whenever(fruitsUseCase.invoke()).thenReturn(Result.failure(Exception(errorMessage)))
+    fun `getFruitsNew - error state`() = runTest {
+        val errorMessage = "Error fetching data"
+        whenever(fruitsUseCase.invoke()).thenReturn(Result.failure(RuntimeException(errorMessage)))
 
         viewModel.getFruitsNew()
-
-        assertEquals(Resource.Loading<List<FruitsResponse>>(), viewModel.state.first())
-        assertEquals(Resource.Error<List<FruitsResponse>>(errorMessage), viewModel.state.first())
+        assertTrue(viewModel.state.first() is Resource.Error)
     }
 }

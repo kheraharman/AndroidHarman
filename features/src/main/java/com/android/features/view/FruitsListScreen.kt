@@ -105,7 +105,7 @@ fun FruitsScreen(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun FruitsListItem(
+fun FruitsListItem(
     fruits: FruitsResponse, onFruitClick: (FruitsResponse) -> Unit
 ) {
 

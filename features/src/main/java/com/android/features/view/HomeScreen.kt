@@ -1,4 +1,4 @@
-package com.android.harman.compose.home
+package com.android.features.view
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -11,8 +11,16 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.android.features.view.FruitsListScreen
 
+/**
+ * `HomeScreen` is the main screen of the application, showcasing a list of fruits.
+ * It utilizes a [Scaffold] layout to provide a consistent material structure that includes
+ * a top app bar and the content area for displaying the list of fruits.
+ *
+ * @param modifier A [Modifier] applied to the [Scaffold] to modify its layout or appearance.
+ * @param onFruitClick A lambda function that is triggered when a fruit item is clicked. It takes
+ * the ID of the clicked fruit as a parameter.
+ */
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
