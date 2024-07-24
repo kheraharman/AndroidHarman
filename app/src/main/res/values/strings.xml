@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">AndroidHarman</string>
+
+    <string name="fruit_order">Order</string>
+    <string name="fruit_family">Family</string>
+    <string name="fruit_genus">Genus</string>
+</resources>
