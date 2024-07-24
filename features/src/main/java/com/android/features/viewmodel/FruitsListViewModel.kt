@@ -26,7 +26,7 @@ class FruitsListViewModel @Inject constructor(
     fun getFruitsNew() = viewModelScope.launch {
         _state.value = Resource.Loading()
 
-        fruitsUseCase.invoke().fold(onSuccess = { _state.value = Resource.Success(it) },
+        fruitsUseCase.getFruits().fold(onSuccess = { _state.value = Resource.Success(it) },
             onFailure = { _state.value = Resource.Error(it.message ?: "An error occurred") })
     }
 }

@@ -17,7 +17,7 @@ class FruitsUseCase @Inject constructor(
     private val fruitsRepository: FruitsRepository
 ) {
 
-    suspend fun invoke(): Result<List<FruitsResponse>> {
+    suspend fun getFruits(): Result<List<FruitsResponse>> {
         return fruitsRepository.getFruits()
     }
 

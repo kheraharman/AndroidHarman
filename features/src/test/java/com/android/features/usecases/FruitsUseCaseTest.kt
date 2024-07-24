@@ -24,7 +24,7 @@ class FruitsUseCaseTest {
         val expectedData = listOf(FruitsResponse("Apple"), FruitsResponse("Banana"))
         whenever(fruitsRepository.getFruits()).thenReturn(Result.success(expectedData))
 
-        val result = fruitsUseCase.invoke()
+        val result = fruitsUseCase.getFruits()
         assertTrue(result.isSuccess)
         assertEquals(expectedData, result.getOrNull())
     }
@@ -33,7 +33,7 @@ class FruitsUseCaseTest {
     fun `invoke - failure`() = runBlocking {
         whenever(fruitsRepository.getFruits()).thenReturn(Result.failure(RuntimeException("Error")))
 
-        val result = fruitsUseCase.invoke()
+        val result = fruitsUseCase.getFruits()
         assertTrue(result.isFailure)
     }
 

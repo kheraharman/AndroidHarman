@@ -44,7 +44,7 @@ class FruitsListViewModelTest {
     @Test
     fun `getFruitsNew - success state`() = runTest {
         val expectedData = listOf(FruitsResponse("Apple"), FruitsResponse("Banana"))
-        whenever(fruitsUseCase.invoke()).thenReturn(Result.success(expectedData))
+        whenever(fruitsUseCase.getFruits()).thenReturn(Result.success(expectedData))
 
         viewModel.getFruitsNew()
         assertTrue(viewModel.state.first() is Resource.Success)
@@ -53,7 +53,7 @@ class FruitsListViewModelTest {
     @Test
     fun `getFruitsNew - error state`() = runTest {
         val errorMessage = "Error fetching data"
-        whenever(fruitsUseCase.invoke()).thenReturn(Result.failure(RuntimeException(errorMessage)))
+        whenever(fruitsUseCase.getFruits()).thenReturn(Result.failure(RuntimeException(errorMessage)))
 
         viewModel.getFruitsNew()
         assertTrue(viewModel.state.first() is Resource.Error)
