@@ -20,7 +20,7 @@ class FruitsUseCaseTest {
     }
 
     @Test
-    fun `invoke - success`() = runBlocking {
+    fun `getFruits - success`() = runBlocking {
         val expectedData = listOf(FruitsResponse("Apple"), FruitsResponse("Banana"))
         whenever(fruitsRepository.getFruits()).thenReturn(Result.success(expectedData))
 
@@ -30,7 +30,7 @@ class FruitsUseCaseTest {
     }
 
     @Test
-    fun `invoke - failure`() = runBlocking {
+    fun `getFruits - failure`() = runBlocking {
         whenever(fruitsRepository.getFruits()).thenReturn(Result.failure(RuntimeException("Error")))
 
         val result = fruitsUseCase.getFruits()
