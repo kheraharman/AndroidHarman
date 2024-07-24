@@ -15,13 +15,8 @@ object Versions {
     const val mockitoCore = "5.10.0"
     const val mockitoKotlin = "4.0.0"
     const val kotlinCoroutineTest = "1.6.0"
+    const val archCore = "2.2.0"
     // Add more versions here
-}
-
-object Libs {
-    const val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
-    const val composeUi = "androidx.compose.ui:ui:${Versions.compose}"
-    // Add more libraries here
 }
 
 object Android {
@@ -31,41 +26,6 @@ object Android {
     const val versionCode = 1
     const val versionName = "1.0"
 }
-
-
-/*
-
-    implementation("androidx.core:core-ktx:1.13.1")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.3")
-    implementation("androidx.activity:activity-compose:1.9.0")
-    implementation(platform("androidx.compose:compose-bom:2023.08.00"))
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-graphics")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.material3:material3")
-
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.2.1")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
-    androidTestImplementation(platform("androidx.compose:compose-bom:2023.08.00"))
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-    debugImplementation("androidx.compose.ui:ui-tooling")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
-
-
-
-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
-hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
-hilt-android-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "hilt" }
-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
-* */
-
-/*
-androidx-lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycle" }
-androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "viewModelCompose" }
-androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "viewModelCompose" }
-androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
-*/
 
 object AndroidX {
     const val coreKtx = "androidx.core:core-ktx:${Versions.kotlinCore}"
@@ -89,14 +49,11 @@ object TestingLibs {
     const val junit = "junit:junit:${Versions.jUnit}"
     const val junitExt = "androidx.test.ext:junit:${Versions.jUnitExt}"
     const val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espressoCore}"
-  //  const val composeBom = "androidx.compose:compose-bom:2023.08.00"
     const val composeUiTestJunit4 = "androidx.compose.ui:ui-test-junit4"
     const val composeUiTooling = "androidx.compose.ui:ui-tooling"
     const val composeUiTestManifest = "androidx.compose.ui:ui-test-manifest"
-/*
-testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0")
-    testImplementation("org.mockito:mockito-core:5.10.0")
-    testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0")*/
+    const val archCore = "androidx.arch.core:core-testing:${Versions.archCore}"
+
     const val mockitoCore = "org.mockito:mockito-core:${Versions.mockitoCore}"
     const val mockitoKotlin = "org.mockito.kotlin:mockito-kotlin:${Versions.mockitoKotlin}"
     const val kotlinCoroutineTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.kotlinCoroutineTest}"
@@ -109,15 +66,10 @@ object HiltAndroid {
     const val hiltNavigationCompose = "androidx.hilt:hilt-navigation-compose:${Versions.hiltNavigationCompose}"
 }
 
-/*
-
-implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
-implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_logging_version"*/
-
 object RetrofitLibs {
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
     const val converterGson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
     const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp}"
     const val okhttp = "com.squareup.okhttp3:okhttp:${Versions.okhttp}"
 }
+

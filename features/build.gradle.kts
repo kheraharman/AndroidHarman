@@ -1,9 +1,8 @@
-
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
-    id("com.google.dagger.hilt.android")
+    id(Plugin.androidLibrary)
+    id(Plugin.kotlinAndroid)
+    id(Plugin.kotlinKapt)
+    id(Plugin.hiltAndroid)
 }
 
 android {
@@ -43,9 +42,11 @@ android {
 
 dependencies {
 
+    //Modules
     implementation(project(Module.CoreUi))
     implementation(project(Module.Data))
 
+    //Libraries
     implementation(AndroidX.coreKtx)
     implementation(AndroidX.lifecycleRuntimeKtx)
     implementation(AndroidX.lifecycleRuntimeCompose)
@@ -53,6 +54,7 @@ dependencies {
     implementation(AndroidX.lifecycleViewModelCompose)
     implementation(AndroidX.lifecycleViewModelKtx)
 
+    //Compose
     implementation(AndroidX.activityCompose)
     implementation(platform(AndroidX.composeBom))
     implementation(AndroidX.composeUi)
@@ -61,20 +63,18 @@ dependencies {
     implementation(AndroidX.composeMaterial3)
     implementation(AndroidX.navigationCompose)
 
+    //Hilt
     implementation(HiltAndroid.hiltAndroid)
     kapt(HiltAndroid.hiltAndroidCompiler)
     implementation(HiltAndroid.hiltAndroidTesting)
     implementation(HiltAndroid.hiltNavigationCompose)
 
-
+    //Testing
     testImplementation(TestingLibs.junit)
     testImplementation(TestingLibs.kotlinCoroutineTest)
     testImplementation(TestingLibs.mockitoCore)
     testImplementation(TestingLibs.mockitoKotlin)
-    testImplementation("androidx.arch.core:core-testing:2.1.0")
-    androidTestImplementation("androidx.test.ext:junit:1.2.1")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
-
+    testImplementation(TestingLibs.archCore)
     androidTestImplementation(platform(AndroidX.composeBom))
     androidTestImplementation(TestingLibs.composeUiTestJunit4)
     debugImplementation(TestingLibs.composeUiTooling)

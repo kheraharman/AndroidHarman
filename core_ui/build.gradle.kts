@@ -1,6 +1,6 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
+    id(Plugin.androidLibrary)
+    id(Plugin.kotlinAndroid)
 }
 
 android {
@@ -44,16 +44,15 @@ dependencies {
     implementation(composeBom)
     androidTestImplementation(composeBom)
 
+    //Compose
     implementation(AndroidX.composeUi)
     implementation(AndroidX.composeMaterial3)
     implementation(AndroidX.activityCompose)
     implementation(AndroidX.lifecycleViewModelCompose)
     implementation(AndroidX.navigationCompose)
     implementation(HiltAndroid.hiltNavigationCompose)
-
     implementation(AndroidX.composeUiToolingPreview)
     debugImplementation(TestingLibs.composeUiTooling)
-
     androidTestImplementation(TestingLibs.composeUiTestJunit4)
     debugImplementation(TestingLibs.composeUiTestManifest)
 

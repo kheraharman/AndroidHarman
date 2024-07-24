@@ -1,8 +1,8 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
-    id("com.google.dagger.hilt.android")
+    id(Plugin.androidLibrary)
+    id(Plugin.kotlinAndroid)
+    id(Plugin.kotlinKapt)
+    id(Plugin.hiltAndroid)
 }
 
 android {
@@ -42,26 +42,21 @@ android {
 
 dependencies {
 
-
+    //Hilt
     implementation(HiltAndroid.hiltAndroid)
     kapt(HiltAndroid.hiltAndroidCompiler)
     implementation(HiltAndroid.hiltAndroidTesting)
     implementation(HiltAndroid.hiltNavigationCompose)
 
+    //Retrofit
     implementation(RetrofitLibs.retrofit)
     implementation(RetrofitLibs.converterGson)
     implementation(RetrofitLibs.okhttp)
     implementation(RetrofitLibs.loggingInterceptor)
-    /*implementation("androidx.core:core-ktx:1.13.1")
-    implementation("androidx.appcompat:appcompat:1.7.0")
-    implementation("com.google.android.material:material:1.12.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.2.1")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")*/
+
+    //Testing
     testImplementation(TestingLibs.junit)
     testImplementation(TestingLibs.kotlinCoroutineTest)
     testImplementation(TestingLibs.mockitoCore)
     testImplementation(TestingLibs.mockitoKotlin)
-    androidTestImplementation("androidx.test.ext:junit:1.2.1")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
 }

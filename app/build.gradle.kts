@@ -1,8 +1,8 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
-    id("com.google.dagger.hilt.android")
+    id(Plugin.androidApplication)
+    id(Plugin.kotlinAndroid)
+    id(Plugin.kotlinKapt)
+    id(Plugin.hiltAndroid)
 }
 
 android {
@@ -55,6 +55,14 @@ android {
             excludes += "/META-INF/gradle/incremental.annotation.processors"
         }
     }
+    lint {
+        // Enable lint checks
+        checkReleaseBuilds = true
+        // Abort the build if errors are found
+        abortOnError = true
+        // Treat all warnings as errors
+        warningsAsErrors = true
+    }
 }
 
 dependencies {
@@ -95,4 +103,14 @@ dependencies {
     androidTestImplementation(TestingLibs.composeUiTestJunit4)
     debugImplementation(TestingLibs.composeUiTooling)
     debugImplementation(TestingLibs.composeUiTestManifest)
+}
+
+
+tasks.withType<JavaCompile> {
+    options.compilerArgs.add("-Xlint:unchecked")
+    options.compilerArgs.add("-Xlint:deprecation")
+}
+
+tasks.register("lintCheck") {
+    dependsOn("lint")
 }
