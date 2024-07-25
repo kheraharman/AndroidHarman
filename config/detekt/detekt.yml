@@ -4,7 +4,7 @@ complexity:
   active: true
   LongParameterList:
     active: true
-    functionThreshold: 20
+    functionThreshold: 6
     ignoreDefaultParameters: true
 naming:
   active: true
