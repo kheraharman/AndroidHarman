@@ -14,6 +14,9 @@ naming:
   TopLevelPropertyNaming:
     active: true
     propertyPattern: '[a-zA-Z][a-zA-Z0-9]*'
+  PackageNaming:
+    active: true
+    packagePattern: '[a-z]+(\.[a-zA-Z_$]*)*'
 style:
   active: true
   MagicNumber:

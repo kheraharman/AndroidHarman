@@ -34,8 +34,8 @@ fun LoadingScreen() {
     Dialog(onDismissRequest = {}) {
         val circleColor: Color = Color.Black
         val circleSize: Dp = 12.dp
-        val animationDelay = 400
-        val initialAlpha = 0.3f
+        val animationDelay = ANIMATION_DELAY
+        val initialAlpha = INITIAL_ALPHA
 
         val circles = listOf(remember {
             Animatable(initialValue = initialAlpha)
@@ -78,3 +78,6 @@ fun LoadingScreen() {
         }
     }
 }
+
+const val ANIMATION_DELAY = 200
+const val INITIAL_ALPHA = 0.3f

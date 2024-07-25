@@ -46,6 +46,8 @@ class FruitsRepositoryImpl @Inject constructor(private val fruitApi: FruitsApi) 
             Result.failure(Exception("Network error", e))
         } catch (e: JsonSyntaxException) {
             Result.failure(Exception("JSON parsing error", e))
+        } catch (e: RuntimeException) {
+            Result.failure(Exception("Runtime error", e))
         }
     }
 
@@ -65,6 +67,8 @@ class FruitsRepositoryImpl @Inject constructor(private val fruitApi: FruitsApi) 
             Result.failure(Exception("Network error", e))
         } catch (e: JsonSyntaxException) {
             Result.failure(Exception("JSON parsing error", e))
+        } catch (e: RuntimeException) {
+            Result.failure(Exception("Runtime error", e))
         }
     }
 }
