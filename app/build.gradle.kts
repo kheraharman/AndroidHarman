@@ -48,7 +48,7 @@ android {
         buildConfig = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = Versions.kotlinCompile
     }
     packaging {
         resources {
@@ -71,6 +71,7 @@ android {
 
 dependencies {
 
+    //Lifecycle
     implementation(AndroidX.coreKtx)
     implementation(AndroidX.lifecycleRuntimeKtx)
     implementation(AndroidX.lifecycleRuntimeCompose)
@@ -78,10 +79,12 @@ dependencies {
     implementation(AndroidX.lifecycleViewModelCompose)
     implementation(AndroidX.lifecycleViewModelKtx)
 
+    //Modules
     implementation(project(Module.CoreUi))
     implementation(project(Module.Data))
     implementation(project(Module.Features))
 
+    //Compose
     implementation(AndroidX.activityCompose)
     implementation(platform(AndroidX.composeBom))
     implementation(AndroidX.composeUi)
@@ -90,16 +93,19 @@ dependencies {
     implementation(AndroidX.composeMaterial3)
     implementation(AndroidX.navigationCompose)
 
+    //Hilt
     implementation(HiltAndroid.hiltAndroid)
     kapt(HiltAndroid.hiltAndroidCompiler)
     implementation(HiltAndroid.hiltAndroidTesting)
     implementation(HiltAndroid.hiltNavigationCompose)
 
+    //Retrofit
     implementation(RetrofitLibs.retrofit)
     implementation(RetrofitLibs.converterGson)
     implementation(RetrofitLibs.okhttp)
     implementation(RetrofitLibs.loggingInterceptor)
 
+    //Testing
     testImplementation(TestingLibs.junit)
     androidTestImplementation(TestingLibs.junitExt)
     androidTestImplementation(TestingLibs.espressoCore)

@@ -37,7 +37,7 @@ android {
         jvmTarget = JavaVersion.VERSION_17.toString()
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = Versions.kotlinCompile
     }
     /**
      * Configures Detekt for static code analysis.

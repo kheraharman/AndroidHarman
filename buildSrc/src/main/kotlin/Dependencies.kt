@@ -16,6 +16,7 @@ object Versions {
     const val mockitoKotlin = "4.0.0"
     const val kotlinCoroutineTest = "1.6.0"
     const val archCore = "2.2.0"
+    const val kotlinCompile = "1.5.1"
     // Add more versions here
 }
 
