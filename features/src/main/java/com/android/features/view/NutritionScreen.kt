@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -26,9 +27,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -36,6 +39,7 @@ import androidx.navigation.NavBackStackEntry
 import com.android.core_ui.ErrorMessage
 import com.android.core_ui.LoadingScreen
 import com.android.data.model.FruitsResponse
+import com.android.data.model.Nutritions
 import com.android.data.network.Resource
 import com.android.features.R
 import com.android.features.viewmodel.NutritionViewModel
@@ -135,7 +139,7 @@ fun NutritionContent(
             fruit,
             modifier
                 .align(Alignment.CenterHorizontally)
-                .padding(top = 20.dp, start = 20.dp)
+                .padding(top = 10.dp, start = 20.dp, end = 10.dp)
         )
     }
 }
@@ -146,30 +150,46 @@ fun NutritionDetailsContent(
 ) {
 
     val nutrition = fruit.nutritions
-    Row(modifier = modifier) {
-        // First row
-        Column(
-            modifier = Modifier
-                .weight(1f)
-                .padding(start = 10.dp)
-        ) {
-            Text(text = "Calories")
-            Text(text = "Sugar")
-            Text(text = "Fat")
-            Text(text = "Carbohydrates")
-            Text(text = "Protein")
-        }
-        // Second row
-        Column(
-            modifier = Modifier
-                .weight(1f)
-                .padding(start = 10.dp)
-        ) {
-            Text(text = nutrition?.calories.toString())
-            Text(text = nutrition?.sugar.toString())
-            Text(text = nutrition?.fat.toString())
-            Text(text = nutrition?.carbohydrates.toString())
-            Text(text = nutrition?.protein.toString())
-        }
+    Column(modifier = modifier) {
+        NutritionItem("Calories", "${nutrition?.calories.toString()} cal")
+        NutritionItem("Sugar", "${nutrition?.sugar.toString()} g")
+        NutritionItem("Fat", "${nutrition?.fat.toString()} g")
+        NutritionItem("Carbohydrates", "${nutrition?.carbohydrates.toString()} g")
+        NutritionItem("Protein", "${nutrition?.protein.toString()} g")
+
     }
+
+}
+
+@Composable
+fun NutritionItem(strHeading: String, strValue: String) {
+
+    Column {
+
+        Row {
+            Text(
+                text = strHeading, modifier = Modifier
+                    .weight(1f)
+                    .padding(start = 10.dp)
+            )
+            Text(
+                text = strValue, modifier = Modifier
+                    .weight(1f)
+                    .padding(start = 10.dp)
+            )
+        }
+        Divider(color = Color.Black, thickness = 1.dp)
+    }
+
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewNutritionContent() {
+    val sampleFruit = FruitsResponse(
+        name = "Apple", family = "Rosaceae", genus = "Malus", nutritions = Nutritions(
+            calories = 52, sugar = 10.39, fat = 0.17, carbohydrates = 13.81, protein = 0.26
+        )
+    )
+    NutritionContent(fruit = sampleFruit, onBackClick = {})
 }
