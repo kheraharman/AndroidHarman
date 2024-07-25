@@ -3,6 +3,7 @@ package com.android.data.repository
 import com.android.data.model.FruitsResponse
 import com.android.data.model.Nutritions
 import com.android.data.network.FruitsApi
+import com.google.gson.JsonSyntaxException
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.test.runTest
@@ -35,7 +36,7 @@ class FruitsRepositoryTest {
 
     @Test
     fun `getFruits returns failure on network error`() = runTest {
-        whenever(fruitsApi.getFruits()).thenThrow(RuntimeException("Network error"))
+        whenever(fruitsApi.getFruits()).thenThrow(JsonSyntaxException("Network error"))
 
         val result = fruitsRepository.getFruits()
 
@@ -76,7 +77,7 @@ class FruitsRepositoryTest {
     @Test
     fun `getNutrition returns failure on network error`() = runTest {
         val fruitId = "1"
-        whenever(fruitsApi.getNutritions("1")).thenThrow(RuntimeException("Network error"))
+        whenever(fruitsApi.getNutritions("1")).thenThrow(JsonSyntaxException("Network error"))
 
         val result = fruitsRepository.getNutrition(fruitId)
 
