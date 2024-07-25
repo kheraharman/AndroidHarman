@@ -23,14 +23,20 @@ import androidx.compose.ui.graphics.Color
 fun ErrorMessage(message: String?, onDismiss: () -> Unit) {
     val openDialog = remember { mutableStateOf(true) }
     if (openDialog.value) {
-        AlertDialog(onDismissRequest = onDismiss, title = {
+        AlertDialog(onDismissRequest = {
+            openDialog.value = false
+            onDismiss()
+        }, title = {
             Text(
                 text = "An unexpected error occurred", color = Color.Black
             )
         }, text = {
             message?.let { Text(it, color = Color.Black) }
         }, confirmButton = {
-            Button(onClick = onDismiss) {
+            Button(onClick = {
+                openDialog.value = false
+                onDismiss()
+            }) {
                 Text("Ok", color = Color.Black)
             }
         })

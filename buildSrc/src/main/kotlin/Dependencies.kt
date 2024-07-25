@@ -73,3 +73,9 @@ object RetrofitLibs {
     const val okhttp = "com.squareup.okhttp3:okhttp:${Versions.okhttp}"
 }
 
+object Detekt {
+    const val version = "1.23.0"
+    const val plugin = "io.gitlab.arturbosch.detekt"
+    const val detekt = "$plugin:detekt-formatting:$version"
+}
+

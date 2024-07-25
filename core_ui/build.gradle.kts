@@ -1,6 +1,7 @@
 plugins {
     id(Plugin.androidLibrary)
     id(Plugin.kotlinAndroid)
+    id(Detekt.plugin) version Detekt.version
 }
 
 android {
@@ -35,6 +36,17 @@ android {
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
+    }
+    /**
+     * Configures Detekt for static code analysis.
+     * - `toolVersion`: Specifies the version of Detekt to use.
+     * - `config`: Sets the path to the Detekt configuration file.
+     * - `buildUponDefaultConfig`: Indicates whether to build upon the default Detekt configuration.
+     */
+    detekt {
+        toolVersion = Detekt.version
+        config.setFrom(file("../config/detekt/detekt.yml"))
+        buildUponDefaultConfig = true
     }
 }
 

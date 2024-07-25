@@ -1,7 +1,6 @@
 package com.android.data.network
 
 import com.android.data.model.FruitsResponse
-import com.android.data.model.Nutritions
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

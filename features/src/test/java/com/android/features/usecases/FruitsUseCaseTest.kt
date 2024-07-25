@@ -2,8 +2,9 @@ package com.android.features.usecases
 
 import com.android.data.model.FruitsResponse
 import com.android.data.repository.FruitsRepository
+import junit.framework.TestCase.assertEquals
+import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.runBlocking
-import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito.mock

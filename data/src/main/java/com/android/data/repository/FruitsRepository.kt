@@ -2,6 +2,9 @@ package com.android.data.repository
 
 import com.android.data.model.FruitsResponse
 import com.android.data.network.FruitsApi
+import com.google.gson.JsonSyntaxException
+import java.io.IOException
+import java.net.UnknownHostException
 import javax.inject.Inject
 
 /**
@@ -35,8 +38,14 @@ class FruitsRepositoryImpl @Inject constructor(private val fruitApi: FruitsApi) 
             } else {
                 Result.failure(Exception("Error fetching fruits: ${response.message()}"))
             }
-        } catch (e: Exception) {
+        } catch (e: IllegalArgumentException) {
+            Result.failure(Exception("Illegal Argument", e))
+        } catch (e: UnknownHostException) {
+            Result.failure(Exception("Unknown Host", e))
+        } catch (e: IOException) {
             Result.failure(Exception("Network error", e))
+        } catch (e: JsonSyntaxException) {
+            Result.failure(Exception("JSON parsing error", e))
         }
     }
 
@@ -48,8 +57,14 @@ class FruitsRepositoryImpl @Inject constructor(private val fruitApi: FruitsApi) 
             } else {
                 Result.failure(Exception("Error fetching Nutritions: ${response.message()}"))
             }
-        } catch (e: Exception) {
+        } catch (e: IllegalArgumentException) {
+            Result.failure(Exception("Illegal Argument", e))
+        } catch (e: UnknownHostException) {
+            Result.failure(Exception("Unknown Host", e))
+        } catch (e: IOException) {
             Result.failure(Exception("Network error", e))
+        } catch (e: JsonSyntaxException) {
+            Result.failure(Exception("JSON parsing error", e))
         }
     }
 }

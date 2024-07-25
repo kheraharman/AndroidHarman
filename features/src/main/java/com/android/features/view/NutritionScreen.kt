@@ -67,7 +67,7 @@ fun NutritionScreen(
         }
 
         is Resource.Error -> {
-            ErrorMessage(message = pageState?.message, onDismiss = { })
+            ErrorMessage(message = pageState?.message, onDismiss = { onBackClick() })
         }
 
         else -> {}
@@ -86,7 +86,7 @@ fun NutritionScreen(
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3Api::class)
 @Composable
 private fun FruitDetailsToolbar(
-    fruit: FruitsResponse, onBackClick: () -> Unit, modifier: Modifier = Modifier
+    fruit: FruitsResponse, onBackClick: () -> Unit
 ) {
     Surface {
         TopAppBar(modifier = Modifier
@@ -124,7 +124,7 @@ fun NutritionContent(
 ) {
     Column {
 
-        FruitDetailsToolbar(fruit, onBackClick = { onBackClick() }, modifier)
+        FruitDetailsToolbar(fruit, onBackClick = { onBackClick() })
         Image(
             painter = painterResource(id = R.drawable.fruits_image),
             contentDescription = "Fruit Image",
