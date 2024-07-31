@@ -29,10 +29,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavBackStackEntry
@@ -111,7 +111,7 @@ private fun FruitDetailsToolbar(
                         // As title in TopAppBar has extra inset on the left, need to do this: b/158829169
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(top = 5.dp)
+                            .padding(top = dimensionResource(id = com.android.core_ui.R.dimen.margin_extra_small))
                             .wrapContentSize(Alignment.Center)
                     )
                 }
@@ -128,6 +128,9 @@ fun NutritionContent(
 ) {
     Column {
 
+        val marginLarge = dimensionResource(id = com.android.core_ui.R.dimen.margin_large)
+        val marginSmall = dimensionResource(id = com.android.core_ui.R.dimen.margin_small)
+
         FruitDetailsToolbar(fruit, onBackClick = { onBackClick() })
         Image(
             painter = painterResource(id = R.drawable.fruits_image),
@@ -139,7 +142,7 @@ fun NutritionContent(
             fruit,
             modifier
                 .align(Alignment.CenterHorizontally)
-                .padding(top = 10.dp, start = 20.dp, end = 10.dp)
+                .padding(top = marginSmall, start = marginLarge, end = marginSmall)
         )
     }
 }
@@ -164,21 +167,25 @@ fun NutritionDetailsContent(
 @Composable
 fun NutritionItem(strHeading: String, strValue: String) {
 
+
+    val marginSmall = dimensionResource(id = com.android.core_ui.R.dimen.margin_small)
+    val divider = dimensionResource(id = com.android.core_ui.R.dimen.divider)
+
     Column {
 
         Row {
             Text(
                 text = strHeading, modifier = Modifier
                     .weight(1f)
-                    .padding(start = 10.dp)
+                    .padding(start = marginSmall)
             )
             Text(
                 text = strValue, modifier = Modifier
                     .weight(1f)
-                    .padding(start = 10.dp)
+                    .padding(start = marginSmall)
             )
         }
-        Divider(color = Color.Black, thickness = 1.dp)
+        Divider(color = Color.Black, thickness = divider)
     }
 
 }

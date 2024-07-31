@@ -17,8 +17,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import kotlinx.coroutines.delay
 
@@ -33,7 +33,7 @@ import kotlinx.coroutines.delay
 fun LoadingScreen() {
     Dialog(onDismissRequest = {}) {
         val circleColor: Color = Color.Black
-        val circleSize: Dp = 12.dp
+        val circleSize: Dp = dimensionResource(id =R.dimen.loading_circle)
         val animationDelay = ANIMATION_DELAY
         val initialAlpha = INITIAL_ALPHA
 
@@ -64,7 +64,7 @@ fun LoadingScreen() {
         ) {
             circles.forEachIndexed { index, animatable ->
                 if (index != 0) {
-                    Spacer(modifier = Modifier.width(width = 6.dp))
+                    Spacer(modifier = Modifier.width(width = dimensionResource(id = R.dimen.margin_normal)))
                 }
                 Box(
                     modifier = Modifier

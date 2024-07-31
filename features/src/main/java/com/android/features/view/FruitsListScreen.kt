@@ -25,7 +25,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.android.core_ui.ErrorMessage
@@ -77,12 +76,9 @@ private fun FruitsList(
     modifier: Modifier = Modifier,
     onFruitClick: (FruitsResponse) -> Unit
 ) {
-    // Call reportFullyDrawn when the garden list has been rendered
-    //val gridState = rememberLazyGridState()
-    //ReportDrawnWhen { gridState.layoutInfo.totalItemsCount > 0 }
     LazyVerticalGrid(
         columns = GridCells.Fixed(2), modifier.imePadding(), contentPadding = PaddingValues(
-            vertical = 5.dp
+            vertical = dimensionResource(id = com.android.core_ui.R.dimen.margin_extra_small)
         )
     ) {
         items(items = gardenPlants) { fruit ->
@@ -112,19 +108,22 @@ fun FruitsListItem(
 ) {
 
     // Dimensions
-    val cardSideMargin = dimensionResource(id = R.dimen.card_side_margin)
-    val marginNormal = dimensionResource(id = R.dimen.margin_normal)
+    val cardSideMargin = dimensionResource(id = com.android.core_ui.R.dimen.card_side_margin)
+    val marginNormal = dimensionResource(id = com.android.core_ui.R.dimen.margin_normal)
+    val marginLarge = dimensionResource(id = com.android.core_ui.R.dimen.margin_large)
+    val marginSmall = dimensionResource(id = com.android.core_ui.R.dimen.margin_small)
+    val divider = dimensionResource(id = com.android.core_ui.R.dimen.divider)
 
     ElevatedCard(
         onClick = { onFruitClick(fruits) },
         modifier = Modifier.padding(
             start = cardSideMargin,
             end = cardSideMargin,
-            bottom = dimensionResource(id = R.dimen.card_bottom_margin)
+            bottom = dimensionResource(id = com.android.core_ui.R.dimen.card_bottom_margin)
         ),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primary)
     ) {
-        Column(modifier = Modifier.padding(bottom = 20.dp)) {
+        Column(modifier = Modifier.padding(bottom = marginLarge)) {
 
             // Fruit name
             fruits.name?.let {
@@ -138,11 +137,11 @@ fun FruitsListItem(
             }
             Divider(
                 color = Color.White,
-                thickness = 1.dp
+                thickness = divider
             )
             Column(
                 Modifier
-                    .padding(top = 10.dp, start = 10.dp)
+                    .padding(top = marginSmall, start = marginSmall)
             ) {
                 Text(
                     text = stringResource(id = R.string.fruit_family),
@@ -155,7 +154,7 @@ fun FruitsListItem(
             }
             Column(
                 Modifier
-                    .padding(top = 10.dp, start = 10.dp)
+                    .padding(top = marginSmall, start = marginSmall)
             ) {
                 Text(
                     text = stringResource(id = R.string.fruit_genus),
