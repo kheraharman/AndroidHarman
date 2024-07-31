@@ -69,6 +69,5 @@ dependencies {
     //Testing
     testImplementation(TestingLibs.junit)
     testImplementation(TestingLibs.kotlinCoroutineTest)
-    testImplementation(TestingLibs.mockitoCore)
-    testImplementation(TestingLibs.mockitoKotlin)
+    testImplementation(TestingLibs.mockk)
 }

@@ -2,18 +2,18 @@ package com.android.features.usecases
 
 import com.android.data.model.FruitsResponse
 import com.android.data.repository.FruitsRepository
+import io.mockk.coEvery
+import io.mockk.mockk
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mockito.mock
-import org.mockito.kotlin.whenever
 
 class FruitsUseCaseTest {
 
     private lateinit var fruitsUseCase: FruitsUseCase
-    private val fruitsRepository: FruitsRepository = mock()
+    private val fruitsRepository: FruitsRepository = mockk()
 
     @Before
     fun setUp() {
@@ -23,7 +23,7 @@ class FruitsUseCaseTest {
     @Test
     fun `getFruits - success`() = runBlocking {
         val expectedData = listOf(FruitsResponse("Apple"), FruitsResponse("Banana"))
-        whenever(fruitsRepository.getFruits()).thenReturn(Result.success(expectedData))
+        coEvery { fruitsRepository.getFruits() } returns Result.success(expectedData)
 
         val result = fruitsUseCase.getFruits()
         assertTrue(result.isSuccess)
@@ -32,7 +32,7 @@ class FruitsUseCaseTest {
 
     @Test
     fun `getFruits - failure`() = runBlocking {
-        whenever(fruitsRepository.getFruits()).thenReturn(Result.failure(RuntimeException("Error")))
+        coEvery { fruitsRepository.getFruits() } returns Result.failure(RuntimeException("Error"))
 
         val result = fruitsUseCase.getFruits()
         assertTrue(result.isFailure)
@@ -42,7 +42,7 @@ class FruitsUseCaseTest {
     fun `getNutrition - success`() = runBlocking {
         val fruitId = "apple"
         val expectedData = FruitsResponse("Apple", 1)
-        whenever(fruitsRepository.getNutrition(fruitId)).thenReturn(Result.success(expectedData))
+        coEvery { fruitsRepository.getNutrition(fruitId) } returns Result.success(expectedData)
 
         val result = fruitsUseCase.getNutrition(fruitId)
         assertTrue(result.isSuccess)
@@ -52,13 +52,7 @@ class FruitsUseCaseTest {
     @Test
     fun `getNutrition - failure`() = runBlocking {
         val fruitId = "1"
-        whenever(fruitsRepository.getNutrition(fruitId)).thenReturn(
-            Result.failure(
-                RuntimeException(
-                    "Error"
-                )
-            )
-        )
+        coEvery { fruitsRepository.getNutrition(fruitId) } returns Result.failure(RuntimeException("Error"))
 
         val result = fruitsUseCase.getNutrition(fruitId)
         assertTrue(result.isFailure)

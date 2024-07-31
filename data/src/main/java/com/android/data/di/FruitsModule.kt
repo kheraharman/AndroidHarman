@@ -38,7 +38,7 @@ class FruitsModule {
      */
     @Singleton
     @Provides
-    fun provideLoginRepository(loginApi: FruitsApi) : FruitsRepository {
-        return FruitsRepositoryImpl(loginApi)
+    fun provideFruitsRepository(fruitsApi: FruitsApi) : FruitsRepository {
+        return FruitsRepositoryImpl(fruitsApi)
     }
 }

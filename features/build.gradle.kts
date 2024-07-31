@@ -84,8 +84,7 @@ dependencies {
     //Testing
     testImplementation(TestingLibs.junit)
     testImplementation(TestingLibs.kotlinCoroutineTest)
-    testImplementation(TestingLibs.mockitoCore)
-    testImplementation(TestingLibs.mockitoKotlin)
+    testImplementation(TestingLibs.mockk)
     testImplementation(TestingLibs.archCore)
     androidTestImplementation(platform(AndroidX.composeBom))
     androidTestImplementation(TestingLibs.composeUiTestJunit4)

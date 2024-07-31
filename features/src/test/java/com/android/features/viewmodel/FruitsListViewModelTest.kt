@@ -5,6 +5,8 @@ import com.android.data.model.FruitsResponse
 import com.android.data.network.Resource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import com.android.features.usecases.FruitsUseCase
+import io.mockk.coEvery
+import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.TestCoroutineDispatcher
@@ -16,8 +18,6 @@ import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.Mockito
-import org.mockito.kotlin.whenever
 
 @ExperimentalCoroutinesApi
 class FruitsListViewModelTest {
@@ -26,7 +26,7 @@ class FruitsListViewModelTest {
 
     private val testDispatcher = TestCoroutineDispatcher()
 
-    private val fruitsUseCase: FruitsUseCase = Mockito.mock()
+    private val fruitsUseCase: FruitsUseCase = mockk()
     private lateinit var viewModel: FruitsListViewModel
 
     @Before
@@ -44,7 +44,7 @@ class FruitsListViewModelTest {
     @Test
     fun `getFruitsNew - success state`() = runTest {
         val expectedData = listOf(FruitsResponse("Apple"), FruitsResponse("Banana"))
-        whenever(fruitsUseCase.getFruits()).thenReturn(Result.success(expectedData))
+        coEvery { fruitsUseCase.getFruits() } returns Result.success(expectedData)
 
         viewModel.getFruitsNew()
         assertTrue(viewModel.state.first() is Resource.Success)
@@ -53,7 +53,7 @@ class FruitsListViewModelTest {
     @Test
     fun `getFruitsNew - error state`() = runTest {
         val errorMessage = "Error fetching data"
-        whenever(fruitsUseCase.getFruits()).thenReturn(Result.failure(RuntimeException(errorMessage)))
+        coEvery { fruitsUseCase.getFruits() } returns Result.failure(RuntimeException(errorMessage))
 
         viewModel.getFruitsNew()
         assertTrue(viewModel.state.first() is Resource.Error)

@@ -3,6 +3,8 @@ package com.android.features.viewmodel
 import com.android.data.model.FruitsResponse
 import com.android.data.network.Resource
 import com.android.features.usecases.FruitsUseCase
+import io.mockk.coEvery
+import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
@@ -14,14 +16,12 @@ import org.junit.After
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mockito.mock
-import org.mockito.kotlin.whenever
 
 @ExperimentalCoroutinesApi
 class NutritionViewModelTest {
 
     private lateinit var viewModel: NutritionViewModel
-    private val fruitsUseCase: FruitsUseCase = mock()
+    private val fruitsUseCase: FruitsUseCase = mockk()
 
     private val testDispatcher = TestCoroutineDispatcher()
     @Before
@@ -40,7 +40,7 @@ class NutritionViewModelTest {
     fun `getNutrition - success state`() = runTest {
         val fruitId = "1"
         val expectedData = FruitsResponse("Apple", 1)
-        whenever(fruitsUseCase.getNutrition(fruitId)).thenReturn(Result.success(expectedData))
+        coEvery { fruitsUseCase.getNutrition(fruitId) } returns Result.success(expectedData)
 
         viewModel.getNutrition(fruitId)
 
@@ -51,7 +51,7 @@ class NutritionViewModelTest {
     fun `getNutrition - error state`() = runTest {
         val fruitId = "1"
         val errorMessage = "Error fetching data"
-        whenever(fruitsUseCase.getNutrition(fruitId)).thenReturn(Result.failure(RuntimeException(errorMessage)))
+        coEvery { fruitsUseCase.getNutrition(fruitId) } returns Result.failure(RuntimeException(errorMessage))
 
         viewModel.getNutrition(fruitId)
         assertTrue(viewModel.state.first() is Resource.Error)

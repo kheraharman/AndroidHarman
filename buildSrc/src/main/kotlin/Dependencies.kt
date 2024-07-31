@@ -12,11 +12,10 @@ object Versions {
     const val hiltNavigationCompose = "1.2.0"
     const val retrofit = "2.11.0"
     const val okhttp = "4.12.0"
-    const val mockitoCore = "5.10.0"
-    const val mockitoKotlin = "4.0.0"
     const val kotlinCoroutineTest = "1.6.0"
     const val archCore = "2.2.0"
     const val kotlinCompile = "1.5.1"
+    const val mockk = "1.12.0"
     // Add more versions here
 }
 
@@ -55,8 +54,7 @@ object TestingLibs {
     const val composeUiTestManifest = "androidx.compose.ui:ui-test-manifest"
     const val archCore = "androidx.arch.core:core-testing:${Versions.archCore}"
 
-    const val mockitoCore = "org.mockito:mockito-core:${Versions.mockitoCore}"
-    const val mockitoKotlin = "org.mockito.kotlin:mockito-kotlin:${Versions.mockitoKotlin}"
+    const val mockk = "io.mockk:mockk:${Versions.mockk}"
     const val kotlinCoroutineTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.kotlinCoroutineTest}"
 }
 
