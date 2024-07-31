@@ -98,7 +98,7 @@ featureFruits/
 │   │   ├── FruitsViewModel.kt
 │   ├── ui/
 │   │   ├── FruitListScreen.kt
-│   │   ├── FruitDetailScreen.kt
+│   │   ├── HomeScreen.kt
 │   │   ├── NutritionScreen.kt
 │   ├── di/
 │   │   ├── FeatureFruitsModule.kt
@@ -117,7 +117,7 @@ features of the application.
 The `core_ui` module contains shared UI components and dimens that can be used across different
 features of the application.
 
-![Screenshot](./images/structure_image.png)
+<img src="./images/structure_image.png" alt="Screenshot" height="600">
 
 ---
 
