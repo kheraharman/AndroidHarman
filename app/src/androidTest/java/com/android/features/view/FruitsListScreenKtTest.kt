@@ -3,7 +3,8 @@ package com.android.features.view
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
-import com.android.data.model.FruitsResponse
+import com.android.common.model.FruitsResponse
+import com.android.presentation.ui.FruitsListItem
 import org.junit.Rule
 import org.junit.Test
 

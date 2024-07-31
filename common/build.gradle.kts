@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.android.core_ui"
-    compileSdk = 34
+    namespace = "com.android.common"
+    compileSdk = Android.compileSdk
 
     defaultConfig {
-        minSdk = 26
+        minSdk = Android.minSdk
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -28,14 +28,8 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    buildFeatures {
-        compose = true
-    }
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_17.toString()
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = Versions.kotlinCompile
     }
     /**
      * Configures Detekt for static code analysis.
@@ -51,17 +45,5 @@ android {
 }
 
 dependencies {
-
-    val composeBom = platform(AndroidX.composeBom)
-    implementation(composeBom)
-
-    //Compose
-    implementation(AndroidX.composeUi)
-    implementation(AndroidX.composeMaterial3)
-    implementation(AndroidX.activityCompose)
-    implementation(AndroidX.lifecycleViewModelCompose)
-    implementation(AndroidX.navigationCompose)
-    implementation(HiltAndroid.hiltNavigationCompose)
-    implementation(AndroidX.composeUiToolingPreview)
-
+    implementation(RetrofitLibs.converterGson)
 }

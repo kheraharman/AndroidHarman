@@ -1,15 +1,17 @@
 plugins {
     id(Plugin.androidLibrary)
     id(Plugin.kotlinAndroid)
+    id(Plugin.kotlinKapt)
+    id(Plugin.hiltAndroid)
     id(Detekt.plugin) version Detekt.version
 }
 
 android {
-    namespace = "com.android.core_ui"
-    compileSdk = 34
+    namespace = "com.android.data"
+    compileSdk = Android.compileSdk
 
     defaultConfig {
-        minSdk = 26
+        minSdk = Android.minSdk
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -28,14 +30,8 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    buildFeatures {
-        compose = true
-    }
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_17.toString()
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = Versions.kotlinCompile
     }
     /**
      * Configures Detekt for static code analysis.
@@ -52,16 +48,26 @@ android {
 
 dependencies {
 
-    val composeBom = platform(AndroidX.composeBom)
-    implementation(composeBom)
+    //Modules
+    implementation(project(Module.FruitsDomain))
+    implementation(project(Module.Common))
 
-    //Compose
-    implementation(AndroidX.composeUi)
-    implementation(AndroidX.composeMaterial3)
-    implementation(AndroidX.activityCompose)
-    implementation(AndroidX.lifecycleViewModelCompose)
-    implementation(AndroidX.navigationCompose)
+
+    //Retrofit
+    implementation(RetrofitLibs.retrofit)
+    implementation(RetrofitLibs.converterGson)
+    implementation(RetrofitLibs.okhttp)
+    implementation(RetrofitLibs.loggingInterceptor)
+
+    //Hilt
+    implementation(HiltAndroid.hiltAndroid)
+    kapt(HiltAndroid.hiltAndroidCompiler)
+    implementation(HiltAndroid.hiltAndroidTesting)
     implementation(HiltAndroid.hiltNavigationCompose)
-    implementation(AndroidX.composeUiToolingPreview)
 
+    //Testing
+    testImplementation(TestingLibs.junit)
+    testImplementation(TestingLibs.kotlinCoroutineTest)
+    testImplementation(TestingLibs.mockk)
+    testImplementation(TestingLibs.archCore)
 }

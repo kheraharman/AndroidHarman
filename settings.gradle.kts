@@ -47,5 +47,7 @@ rootProject.name = "AndroidHarman"
  */
 include(":app")
 include(":core_ui")
-include(":data")
-include(":features")
+include(":common")
+include(":featureFruits:data")
+include(":featureFruits:presentation")
+include(":featureFruits:domain")

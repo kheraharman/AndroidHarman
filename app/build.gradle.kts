@@ -81,8 +81,10 @@ dependencies {
 
     //Modules
     implementation(project(Module.CoreUi))
-    implementation(project(Module.Data))
-    implementation(project(Module.Features))
+    implementation(project(Module.Common))
+    implementation(project(Module.FruitsData))
+    implementation(project(Module.FruitsDomain))
+    implementation(project(Module.FruitsPresentation))
 
     //Compose
     implementation(AndroidX.activityCompose)

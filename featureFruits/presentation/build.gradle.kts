@@ -1,15 +1,17 @@
 plugins {
     id(Plugin.androidLibrary)
     id(Plugin.kotlinAndroid)
+    id(Plugin.kotlinKapt)
+    id(Plugin.hiltAndroid)
     id(Detekt.plugin) version Detekt.version
 }
 
 android {
-    namespace = "com.android.core_ui"
-    compileSdk = 34
+    namespace = "com.android.presentation"
+    compileSdk = Android.compileSdk
 
     defaultConfig {
-        minSdk = 26
+        minSdk = Android.minSdk
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -52,16 +54,46 @@ android {
 
 dependencies {
 
-    val composeBom = platform(AndroidX.composeBom)
-    implementation(composeBom)
+
+    //Modules
+    implementation(project(Module.CoreUi))
+    implementation(project(Module.Common))
+    implementation(project(Module.FruitsDomain))
+    implementation(project(Module.FruitsData))
+
+    //Libraries
+    implementation(AndroidX.coreKtx)
+    implementation(AndroidX.lifecycleRuntimeKtx)
+    implementation(AndroidX.lifecycleRuntimeCompose)
+    implementation(AndroidX.lifecycleLivedataKtx)
+    implementation(AndroidX.lifecycleViewModelCompose)
+    implementation(AndroidX.lifecycleViewModelKtx)
 
     //Compose
-    implementation(AndroidX.composeUi)
-    implementation(AndroidX.composeMaterial3)
     implementation(AndroidX.activityCompose)
-    implementation(AndroidX.lifecycleViewModelCompose)
-    implementation(AndroidX.navigationCompose)
-    implementation(HiltAndroid.hiltNavigationCompose)
+    implementation(platform(AndroidX.composeBom))
+    implementation(AndroidX.composeUi)
+    implementation(AndroidX.composeUiGraphics)
     implementation(AndroidX.composeUiToolingPreview)
+    implementation(AndroidX.composeMaterial3)
+    implementation(AndroidX.navigationCompose)
 
+    //Hilt
+    implementation(HiltAndroid.hiltAndroid)
+    kapt(HiltAndroid.hiltAndroidCompiler)
+    implementation(HiltAndroid.hiltAndroidTesting)
+    implementation(HiltAndroid.hiltNavigationCompose)
+
+    //Retrofit
+    implementation(RetrofitLibs.retrofit)
+
+    //Testing
+    testImplementation(TestingLibs.junit)
+    testImplementation(TestingLibs.kotlinCoroutineTest)
+    testImplementation(TestingLibs.mockk)
+    testImplementation(TestingLibs.archCore)
+    androidTestImplementation(platform(AndroidX.composeBom))
+    androidTestImplementation(TestingLibs.composeUiTestJunit4)
+    debugImplementation(TestingLibs.composeUiTooling)
+    debugImplementation(TestingLibs.composeUiTestManifest)
 }

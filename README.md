@@ -37,9 +37,89 @@ To run Detekt, use the following Gradle command:
 
 - **MVVM Architecture**: Follows the Model-View-ViewModel (MVVM) architecture for separation of
   concerns and easier testing.
-- **Clean Architecture**: Follows the Clean Architecture principles for better separation of concerns.
 - **Single Activity**: Uses a single activity architecture with multiple composables for different
   screens.
+- **Clean Architecture**: Follows the Clean Architecture principles for better separation of
+  concerns.
+
+```
++-------------------+
+|   Feature A       |
+| +---------------+ |
+| | Presentation  | |
+| |     Layer     | |
+| +---------------+ |
+| |    Domain     | |
+| |     Layer     | |
+| +---------------+ |
+| |     Data      | |
+| |     Layer     | |
+| +---------------+ |
++-------------------+
++-------------------+
+|   Feature B       |
+| +---------------+ |
+| | Presentation  | |
+| |     Layer     | |
+| +---------------+ |
+| |    Domain     | |
+| |     Layer     | |
+| +---------------+ |
+| |     Data      | |
+| |     Layer     | |
+| +---------------+ |
++-------------------+
+```
+
+### FeatureFruits Module
+
+The featureFruits module is structured to follow Clean Architecture principles, ensuring a clear
+separation of concerns across different layers: Data, Domain, and Presentation.
+
+#### Directory Structure
+
+```
+featureFruits/
+├── data/
+│   ├── di/
+│   │   ├── NetworkModule.kt
+│   ├── repository/
+│   │   ├── FruitsRepositoryImpl.kt
+│   ├── remote/
+│   │   ├── FruitsApi.kt
+├── domain/
+│   ├── repository/
+│   │   ├── FruitsRepository.kt
+│   ├── usecases/
+│   │   ├── FruitsUseCase.kt
+├── presentation/
+│   ├── viewmodel/
+│   │   ├── NutritionViewModel.kt
+│   │   ├── FruitsViewModel.kt
+│   ├── ui/
+│   │   ├── FruitListScreen.kt
+│   │   ├── FruitDetailScreen.kt
+│   │   ├── NutritionScreen.kt
+│   ├── di/
+│   │   ├── FeatureFruitsModule.kt
+
+```
+
+### Supporting Modules
+
+#### Common Module
+
+The `common` module contains shared utilities and components that can be used across different
+features of the application.
+
+#### Core UI Module
+
+The `core_ui` module contains shared UI components and dimens that can be used across different
+features of the application.
+
+![Screenshot](./images/structure_image.png)
+
+---
 
 ## Getting Started
 
@@ -57,6 +137,3 @@ or later.
 2. Open the project in Android Studio
 3. Build and run the project
 4. Explore the app
-
-## Contributing
-Contributions are welcome! 
