@@ -33,7 +33,7 @@ import kotlinx.coroutines.delay
 fun LoadingScreen() {
     Dialog(onDismissRequest = {}) {
         val circleColor: Color = Color.Black
-        val circleSize: Dp = dimensionResource(id =R.dimen.loading_circle)
+        val circleSize: Dp = dimensionResource(id = R.dimen.loading_circle)
         val animationDelay = ANIMATION_DELAY
         val initialAlpha = INITIAL_ALPHA
 
