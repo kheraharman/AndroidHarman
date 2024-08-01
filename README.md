@@ -16,23 +16,6 @@ with Dagger-Hilt and navigation with Jetpack Compose.
 - **Navigation**: Implements navigation with Jetpack Compose Navigation.
 - **Unit Testing**: Includes unit tests for the view models and repositories.
 
-## Static Code Analysis with Detekt
-
-This project uses Detekt for static code analysis of Kotlin code.
-
-### Configuration
-
-The Detekt configuration file is located at `config/detekt/detekt.yml`. This file contains all the
-rules and settings for Detekt.
-
-### Running Detekt
-
-To run Detekt, use the following Gradle command:
-
-```sh
-./gradlew detekt
-```
-
 ## Architecture
 
 - **MVVM Architecture**: Follows the Model-View-ViewModel (MVVM) architecture for separation of
@@ -120,6 +103,23 @@ features of the application.
 <img src="./images/structure_image.png" alt="Screenshot" height="600">
 
 ---
+
+## Static Code Analysis with Detekt
+
+This project uses Detekt for static code analysis of Kotlin code.
+
+### Configuration
+
+The Detekt configuration file is located at `config/detekt/detekt.yml`. This file contains all the
+rules and settings for Detekt.
+
+### Running Detekt
+
+To run Detekt, use the following Gradle command:
+
+```sh
+./gradlew detekt
+```
 
 ## Getting Started
 
