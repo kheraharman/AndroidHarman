@@ -41,7 +41,7 @@ android {
      */
     detekt {
         toolVersion = Detekt.version
-        config.setFrom(file("../config/detekt/detekt.yml"))
+        config.setFrom(file("../../config/detekt/detekt.yml"))
         buildUponDefaultConfig = true
     }
 }
