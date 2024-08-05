@@ -59,7 +59,6 @@ dependencies {
     implementation(project(Module.CoreUi))
     implementation(project(Module.Common))
     implementation(project(Module.FruitsDomain))
-    implementation(project(Module.FruitsData))
 
     //Libraries
     implementation(AndroidX.coreKtx)

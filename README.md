@@ -66,6 +66,7 @@ featureFruits/
 ├── data/
 │   ├── di/
 │   │   ├── NetworkModule.kt
+│   │   ├── FruitsModule.kt
 │   ├── repository/
 │   │   ├── FruitsRepositoryImpl.kt
 │   ├── remote/
@@ -83,8 +84,6 @@ featureFruits/
 │   │   ├── FruitListScreen.kt
 │   │   ├── HomeScreen.kt
 │   │   ├── NutritionScreen.kt
-│   ├── di/
-│   │   ├── FeatureFruitsModule.kt
 
 ```
 

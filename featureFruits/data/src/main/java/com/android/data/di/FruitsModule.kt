@@ -1,4 +1,4 @@
-package com.android.presentation.di
+package com.android.data.di
 
 import com.android.data.remote.FruitsApi
 import com.android.data.repository.FruitsRepositoryImpl
